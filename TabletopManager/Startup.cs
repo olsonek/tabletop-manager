@@ -30,7 +30,7 @@ namespace TabletopManager
         {
             services
                 .AddSingleton<IInventoryServiceFactory, InventoryServiceFactory>()
-                .AddSingleton<IInventoryRepository, InventoryRepository>();
+                .AddSingleton<IInventoryRepository, MemoryInventoryRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

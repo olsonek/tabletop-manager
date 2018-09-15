@@ -9,7 +9,7 @@ namespace TabletopManager.Repositories.Interfaces
     public interface IInventoryRepository
     {
         Inventory GetInventory(Guid id);
-        IEnumerable<Guid> GetInventories();
+        IEnumerable<Guid> GetInventoryIds();
         void UpdateInventory(Guid id, Inventory inventory);
         void DeleteInventory(Guid id);
     }

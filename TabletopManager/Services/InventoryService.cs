@@ -11,11 +11,13 @@ namespace TabletopManager.Services
     {
         private readonly Inventory _inventory;
         private HashSet<Item> Items => _inventory?.Items;
-        private Dictionary<string, HashSet<Item>> ItemsByTag => _inventory?.ItemsByTag;
+        private Dictionary<string, HashSet<Item>> ItemsByTag;
 
         public InventoryService(Inventory inventory)
         {
             _inventory = inventory;
+            ItemsByTag = new Dictionary<string, HashSet<Item>>();
+            BuildTagLookup();
         }
 
         public void AddItem(Item item)
@@ -65,7 +67,7 @@ namespace TabletopManager.Services
             ItemsByTag.Remove(tag);
         }
 
-        public void RefreshTagLookup()
+        public void BuildTagLookup()
         {
             ItemsByTag.Clear();
             foreach (Item item in Items)

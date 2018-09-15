@@ -28,13 +28,20 @@ namespace TabletopManager.Controllers
         [HttpGet]
         public IActionResult GetInventoriesIds()
         {
-            return new ObjectResult(_inventoryRepository.GetInventories());
+            return new ObjectResult(_inventoryRepository.GetInventoryIds());
         }
 
         [HttpGet("{id}")]
         public IActionResult GetInventory(Guid id)
         {
-            return new ObjectResult(_inventoryRepository.GetInventory(id));
+            try
+            {
+                return new ObjectResult(_inventoryRepository.GetInventory(id));
+            }
+            catch (KeyNotFoundException)
+            {
+                return new StatusCodeResult(404);
+            }
         }
 
         [HttpPut("{id}")]
@@ -45,7 +52,7 @@ namespace TabletopManager.Controllers
                 _inventoryRepository.UpdateInventory(id, inventory);
                 return new StatusCodeResult(200);
             }
-            catch
+            catch (KeyNotFoundException)
             {
                 return new StatusCodeResult(400);
             }

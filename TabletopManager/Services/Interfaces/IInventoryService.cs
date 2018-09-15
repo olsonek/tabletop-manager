@@ -16,6 +16,6 @@ namespace TabletopManager.Services.Interfaces
 
         void DeleteTag(string tag);
 
-        void RefreshTagLookup();
+        void BuildTagLookup();
     }
 }
